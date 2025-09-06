@@ -8,7 +8,7 @@ This repository contains the validation data for an experimental, active buffer 
 Real-time audio systems face a fundamental trade-off between latency and stability. Small buffers offer low latency but are highly susceptible to jitter and buffer underruns/overruns (xruns), resulting in audible glitches. Large buffers provide stability but introduce unacceptable latency for interactive applications.
 
 **Methodology:**
-This servo actively and intelligently modulates the audio stream to maintain a target latency with extreme precision, eliminating the need for oversized, high-latency buffers. The attached data represents a continuous 5-minute performance test of the system under load.
+This servo actively and intelligently via mathmatical percision modulates the audio stream to maintain a target latency with extreme precision, eliminating the need for oversized, high-latency buffers. The attached data represents a continuous 5-minute performance test of the system under load.
 
 **Key Results:**
 * **Jitter Reduction:** 99.2% improvement over baseline.
