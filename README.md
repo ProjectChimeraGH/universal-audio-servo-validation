@@ -1,24 +1,49 @@
-# universal-audio-servo-validation
-Performance and validation data for an experimental, active servo designed to eliminate jitter in real-time buffered data streams.
-### Universal Audio Servo: Performance Validation Data
+Universal Audio Sync: Performance Validation Data
 
-This repository contains the validation data for an experimental, active buffer control system (a "servo") designed to eliminate jitter in real-time audio streams.
+Problem Statement
 
-**Problem Statement:**
-Real-time audio systems face a fundamental trade-off between latency and stability. Small buffers offer low latency but are highly susceptible to jitter and buffer underruns/overruns (xruns), resulting in audible glitches. Large buffers provide stability but introduce unacceptable latency for interactive applications.
+Real-time audio systems face a fundamental dilemma:
 
-**Methodology:**
-This servo actively and intelligently via mathmatical percision modulates the audio stream to maintain a target latency with extreme precision, eliminating the need for oversized, high-latency buffers. The attached data represents a continuous 5-minute performance test of the system under load.
+Small buffers → low latency, but prone to jitter and audible dropouts.
 
-**Key Results:**
-* **Jitter Reduction:** 99.2% improvement over baseline.
-* **Latency Control:** Maintained a perfect 3.000ms target latency.
-* **Stability:** Zero buffer underruns/overruns (xruns) occurred during the test.
+Large buffers → stability, but unacceptable latency for interactive use.
 
-**Data Files:**
-* `servo_professional_analysis.jpg`: A graphical summary of the performance comparison.
-* `servo_performance.csv`: The raw, second-by-second telemetry data from the 5-minute test run.
+This trade-off has long limited performance in conferencing, gaming, and professional audio.
 
-This data is being shared for the purpose of peer review and validation by the engineering community. The underlying algorithm is proprietary.
+Approach
 
-As you can see, the performance is a flat line at 3ms. There is one tiny visual artifact in the graph here from a torn read in our logging script—the raw CSV data, of course, confirms the latency never actually wavered. We've since improved the logger to filter those out.
+We conducted controlled validation tests of a new software-based synchronization method designed to stabilize real-time buffered streams under drift stress.
+
+The method is treated as a black-box system: input = asynchronous audio clocks with deliberate drift, output = observable queue depth, latency, and error events.
+
+Test Conditions
+
+Buffer target: 144 frames (~3.0 ms)
+
+Drift stress: ±80 ppm clock mismatch
+
+Duration: 5 minutes continuous run (for this demo)
+
+Telemetry recorded: buffer depth, corrections, underrun/overrun counts
+
+Key Results
+
+Latency stability: >99.99% of samples held within ±1 frame of the target
+
+Jitter elimination: correction intervals evenly spaced with <1% variance
+
+Robustness: Zero underruns (xruns) despite continuous drift stress
+
+Accuracy: Cumulative corrections slope exactly matched injected drift
+
+Data Files
+
+servo_performance.csv — raw telemetry log (queue depth, corrections, events)
+
+performance_summary.jpg — visual plots (queue depth stability, correction uniformity, drift slope match)
+
+Conclusion
+
+The results demonstrate a stable, low-latency, jitter-free audio pipeline under realistic stress. Unlike conventional approaches (oversized buffers, resampling, hardware ASRC), this method maintains interactive latency with uncompromising stability.
+
+Note: The underlying synchronization technique is proprietary. This repository contains results only for validation purposes.
