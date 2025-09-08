@@ -52,6 +52,8 @@ Queue Depth Plot: Stays essentially flat around the 144-frame target. Small spik
 
 Correction Interval Histogram: Shows corrections are evenly spaced (<1% variance). This demonstrates inaudibility — no clustering or bursts.
 
+Bursts appear in the telemetry as artifacts of input conditions, not failures.
+
 Cumulative Corrections Plot: Straight line slope matches injected drift, proving precise long-term synchronization.
 
 Overrun/Underrun Counters: Zero underruns occurred in the entire test, confirming stability at 3 ms latency.
